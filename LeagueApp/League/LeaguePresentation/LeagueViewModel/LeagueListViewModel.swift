@@ -23,8 +23,7 @@ class LeagueListViewModel: ObservableObject, Identifiable  {
         self.leagueFetcher = leagueFetcher
         $type
             .dropFirst(1)
-            .debounce(for: .seconds(0.5), scheduler: scheduler)
-            .sink(receiveValue: fetchLeague(byType:))
+            .sink(receiveValue: fetchLeague(byType :))
             .store(in: &disposables)
     }
     

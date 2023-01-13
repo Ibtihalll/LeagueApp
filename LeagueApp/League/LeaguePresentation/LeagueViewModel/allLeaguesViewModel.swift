@@ -9,7 +9,7 @@ import Foundation
 
 class allLeaguesViewModel: Identifiable {
     
-    private let dataSource: AllLeaguesResponse.Item
+    public let dataSource: AllLeaguesResponse.Item
     
     init(item: AllLeaguesResponse.Item) {
       self.dataSource = item

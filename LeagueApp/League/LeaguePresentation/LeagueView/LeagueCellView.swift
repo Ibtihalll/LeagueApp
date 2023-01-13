@@ -36,7 +36,6 @@ struct LeagueCellView: View {
                                     .foregroundColor(.gray)
                 }
             }
-//            .onAppear(perform: viewModel.refresh)
             .frame(width: 110, height: 110)
         }
     }
