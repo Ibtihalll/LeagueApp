@@ -10,11 +10,7 @@ import Combine
 import SwiftUI
 
 class LeagueCellViewModel: ObservableObject, Identifiable {
-    
     @Published var dataSource: [TeamViewModel]?
-    
-//    private let leagueFetcher: LeagueFetchable
-//    private var disposables = Set<AnyCancellable>()
 
     private let item: TeamListResponse.Item
     
@@ -31,8 +27,6 @@ class LeagueCellViewModel: ObservableObject, Identifiable {
     }
     
     init(item: TeamListResponse.Item) {
-        
-//        self.leagueFetcher = leagueFetcher
         self.item = item
     }
 }
@@ -45,32 +39,6 @@ extension LeagueCellViewModel: Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
     }
-    
-//    func refresh() {
-//        leagueFetcher
-//            .teamDetailResponse(byName: name)
-//            .map { response in
-//                response.teams.map(TeamViewModel.init)
-//            }
-//        //        .map(Array.removeDuplicates)
-//            .receive(on: DispatchQueue.main)
-//            .sink(
-//                receiveCompletion: { [weak self] value in
-//                    guard let self = self else { return }
-//                    switch value {
-//                    case .failure:
-//                        print("")
-//                        self.dataSource = []
-//                    case .finished:
-//                        break
-//                    }
-//                },
-//                receiveValue: { [weak self] data in
-//                    guard let self = self else { return }
-//                    self.dataSource = data
-//                })
-//            .store(in: &disposables)
-//    }
 }
 
 extension LeagueCellViewModel {

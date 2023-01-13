@@ -50,35 +50,4 @@ class LeagueListViewModel: ObservableObject, Identifiable  {
                 })
             .store(in: &disposables)
     }
-    
-    func complete(byType type: String){
-        
-        leagueFetcher.allLeaguesResponse()
-            .receive(on: DispatchQueue.main)
-            .map { response in
-                response.leagues.map(allLeaguesViewModel.init)
-            }
-            .sink(
-                receiveCompletion: { [weak self] value in
-                    guard let self = self else { return }
-                    switch value {
-                    case .failure:
-                        self.dataSource = []
-                    case .finished:
-                        break
-                    }
-                },
-                receiveValue: { [weak self] data in
-//                    data.forEach{ value in
-//                        value.dataSource.forEach { v in
-//                            guard let self = self else { return }
-//                            if let _ = v.strLeague.range(of: self.type){
-//                                self.type = value.strLeague
-//                                self.fetchLeague(byType: value.strLeague)
-//                            }
-//                        }
-//                    }
-                })
-            .store(in: &disposables)
-    }
 }
