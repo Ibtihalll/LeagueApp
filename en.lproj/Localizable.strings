@@ -1,0 +1,11 @@
+//
+//  Localizable.strings
+//  LeagueApp
+//
+//  Created by Devinsley on 11/01/2023.
+//
+
+"search_bar_label" = "Search by league";
+"unknown_label" = "Unknown";
+"no_records_label" = "No leagues";
+"url_not_created" = "Couldn't create URL";
