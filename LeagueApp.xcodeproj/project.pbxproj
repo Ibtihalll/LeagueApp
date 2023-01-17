@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD358ECD2976B90A00AAD365 /* CustomAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD358ECC2976B90A00AAD365 /* CustomAsyncImage.swift */; };
 		DD7609AC296F16C100E136C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD7609AB296F16C100E136C1 /* Assets.xcassets */; };
 		DD7609B9296F16C100E136C1 /* LeagueAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7609B8296F16C100E136C1 /* LeagueAppTests.swift */; };
 		DD7609C3296F16C100E136C1 /* LeagueAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7609C2296F16C100E136C1 /* LeagueAppUITests.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD358ECC2976B90A00AAD365 /* CustomAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAsyncImage.swift; sourceTree = "<group>"; };
 		DD7609A4296F16BF00E136C1 /* LeagueApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeagueApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD7609AB296F16C100E136C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD7609B4296F16C100E136C1 /* LeagueAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeagueAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				DD7609E4296F18E300E136C1 /* String+Extension.swift */,
+				DD358ECC2976B90A00AAD365 /* CustomAsyncImage.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD7609DF296F180000E136C1 /* Responses.swift in Sources */,
+				DD358ECD2976B90A00AAD365 /* CustomAsyncImage.swift in Sources */,
 				DD7609E5296F18E300E136C1 /* String+Extension.swift in Sources */,
 				DD7609F1296F1A1A00E136C1 /* LeagueCellView.swift in Sources */,
 				DD760A43296FFA9500E136C1 /* allLeaguesViewModel.swift in Sources */,

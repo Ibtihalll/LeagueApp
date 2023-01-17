@@ -28,7 +28,7 @@ class TeamViewModel: ObservableObject, Identifiable {
     }
     
     var teamDesc: String {
-        return item.strDescriptionFR ?? ""
+        return item.strDescriptionFR ?? (item.strDescriptionEN ?? "")
     }
     
     init(item: TeamListResponse.Item) {

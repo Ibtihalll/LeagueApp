@@ -16,37 +16,27 @@ class LeagueListViewModel: ObservableObject, Identifiable  {
     private let leagueFetcher: LeagueFetchable
     private var disposables = Set<AnyCancellable>()
     
-    init(
-        leagueFetcher: LeagueFetchable,
-        scheduler: DispatchQueue = DispatchQueue(label: "LeagueViewModel")
-    ) {
+    init(leagueFetcher: LeagueFetchable) {
         self.leagueFetcher = leagueFetcher
-        $type
-            .dropFirst(1)
-            .sink(receiveValue: fetchLeague(byType :))
-            .store(in: &disposables)
+        self.configureBindings()
     }
     
-    func fetchLeague(byType type: String) {
-        leagueFetcher.leagueListResponse(byType: type)
-            .map { response in
-                response.teams.map(LeagueCellViewModel.init)
+    private func configureBindings(){
+        $type
+            .dropFirst()
+            .print("type")
+            .map({ value in
+                self.leagueFetcher.leagueListResponse(byType: value)
+            })
+            .switchToLatest()
+            .map { response -> [LeagueCellViewModel] in
+                guard let teams = response.teams else {
+                    return []
+                }
+                return teams.map(LeagueCellViewModel.init)
             }
             .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { [weak self] value in
-                    guard let self = self else { return }
-                    switch value {
-                    case .failure:
-                        self.dataSource = []
-                    case .finished:
-                        break
-                    }
-                },
-                receiveValue: { [weak self] data in
-                    guard let self = self else { return }
-                    self.dataSource = data
-                })
-            .store(in: &disposables)
+            .replaceError(with: [])
+            .assign(to: &$dataSource)
     }
 }

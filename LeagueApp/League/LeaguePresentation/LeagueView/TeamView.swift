@@ -11,9 +11,9 @@ import Foundation
 struct TeamView: View {
     
     @ObservedObject var viewModel: TeamViewModel
-
+    
     init(viewModel: TeamViewModel) {
-      self.viewModel = viewModel
+        self.viewModel = viewModel
     }
     
     var body: some View {
@@ -24,38 +24,15 @@ struct TeamView: View {
             .padding(.top, -30)
         ScrollView {
             VStack(alignment: .leading) {
-                AsyncImage(url: URL(string: viewModel.teamImage), transaction: .init(animation: .spring())) { phase in
-                    switch phase {
-                    case .empty:
-                        ProgressView()
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .transition(.opacity.combined(with: .scale))
-                    case .failure(_):
-                        VStack(spacing: 16) {
-                                        Image(systemName: "xmark.octagon.fill")
-                                            .foregroundColor(.red)
-                                    }
-                    @unknown default:
-                        Text("no_records_label".localized())
-                                        .foregroundColor(.gray)
-                    }
+                Group {
+                    CustomAsyncImage(url: URL(string: self.viewModel.teamImage))
+                    Text(viewModel.teamCountry)
+                    Text(viewModel.teamLeague)
+                        .font(Font.body.bold())
+                    Text(viewModel.teamDesc)
                 }
                 .padding([.trailing, .leading])
-                    .padding(.bottom, 5)
-                
-                Text(viewModel.teamCountry)
-                    .padding([.trailing, .leading])
-                    .padding(.bottom, 5)
-                Text(viewModel.teamLeague)
-                    .padding([.trailing, .leading])
-                    .padding(.bottom, 5)
-                    .font(Font.body.bold())
-                Text(viewModel.teamDesc)
-                    .padding([.trailing, .leading])
-                    .padding(.bottom, 5)
+                .padding(.bottom, 5)
             }
         }
     }

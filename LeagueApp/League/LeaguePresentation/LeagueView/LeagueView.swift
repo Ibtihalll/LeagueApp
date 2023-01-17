@@ -36,8 +36,7 @@ private extension LeagueView {
     var searchField: some View {
         HStack {
             Image(systemName: "magnifyingglass")
-            TextField(viewModel.type == "" ? "search_bar_label".localized() : viewModel.type, text: $viewModel.type)
-                .foregroundColor(.secondary)
+            TextField("", text: $viewModel.type, prompt: Text("search_bar_label".localized()))
         }
         .padding(EdgeInsets(top: 8, leading: 3, bottom: 8, trailing: 3))
         .foregroundColor(.primary)

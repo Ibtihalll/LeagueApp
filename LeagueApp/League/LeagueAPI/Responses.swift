@@ -21,7 +21,7 @@ struct AllLeaguesResponse: Codable {
 }
 
 struct TeamListResponse: Codable {
-    let teams: [Item]
+    let teams: [Item]?
     
     struct Item: Codable {
         let idTeam : String

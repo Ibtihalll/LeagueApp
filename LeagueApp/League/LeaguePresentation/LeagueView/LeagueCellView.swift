@@ -11,31 +11,17 @@ struct LeagueCellView: View {
     
     @ObservedObject var viewModel: LeagueCellViewModel
     
+    private var CurrentTeamView: some View {
+        TeamView(viewModel: viewModel.makeTeamViewModel())
+    }
+    
     init(viewModel: LeagueCellViewModel) {
         self.viewModel = viewModel
     }
     
     var body: some View {
-        NavigationLink(destination: viewModel.currentTeamView) {
-            AsyncImage(url: URL(string: self.viewModel.image), transaction: .init(animation: .spring())) { phase in
-                switch phase {
-                case .empty:
-                    ProgressView()
-                case .success(let image):
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .transition(.opacity.combined(with: .scale))
-                case .failure(_):
-                    VStack(spacing: 16) {
-                                    Image(systemName: "xmark.octagon.fill")
-                                        .foregroundColor(.red)
-                                }
-                @unknown default:
-                    Text("unknown_label".localized())
-                                    .foregroundColor(.gray)
-                }
-            }
+        NavigationLink(destination: CurrentTeamView) {
+            CustomAsyncImage(url: URL(string: self.viewModel.image))
             .frame(width: 110, height: 110)
         }
     }

@@ -11,7 +11,7 @@ import SwiftUI
 
 class LeagueCellViewModel: ObservableObject, Identifiable {
     @Published var dataSource: [TeamViewModel]?
-
+    
     private let item: TeamListResponse.Item
     
     var id: String {
@@ -43,14 +43,8 @@ extension LeagueCellViewModel: Hashable {
 
 extension LeagueCellViewModel {
     
-    private func makeTeamView(
-        byName name: String, item: TeamListResponse.Item) -> some View {
-          let viewModel = TeamViewModel(item: item)
-      return TeamView(viewModel: viewModel)
-    }
-    
-    var currentTeamView: some View {
-        return makeTeamView(
-            byName: self.name, item: item)
+    func makeTeamViewModel() -> TeamViewModel {
+        let viewModel = TeamViewModel(item: item)
+        return viewModel
     }
 }
