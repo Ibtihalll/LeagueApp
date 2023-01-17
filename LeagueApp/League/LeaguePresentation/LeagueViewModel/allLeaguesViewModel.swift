@@ -7,12 +7,16 @@
 
 import Foundation
 
-class allLeaguesViewModel: Identifiable {
+class allLeaguesViewModel: ObservableObject, Identifiable {
     
-    public let dataSource: AllLeaguesResponse.Item
+    private let item: AllLeaguesResponse.Item
+    
+    var name: String {
+        return item.strLeague ?? ""
+    }
     
     init(item: AllLeaguesResponse.Item) {
-      self.dataSource = item
+      self.item = item
     }
 }
 

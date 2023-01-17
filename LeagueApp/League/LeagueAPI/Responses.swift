@@ -9,12 +9,12 @@
 import Foundation
 
 struct AllLeaguesResponse: Codable {
-    let leagues: [Item]
+    let leagues: [Item]?
     
-    struct Item: Codable{
+    struct Item: Codable {
         
         let idLeague: String?
-        let strLeague: String?
+        let strLeague: String
         let strSport: String?
         let strLeagueAlternate: String?
     }

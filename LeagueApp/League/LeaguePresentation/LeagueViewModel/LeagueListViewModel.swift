@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-class LeagueListViewModel: ObservableObject, Identifiable  {
+class LeagueListViewModel: ObservableObject, Identifiable {
     
     @Published var type: String = ""
     @Published var dataSource: [LeagueCellViewModel] = []
@@ -18,7 +18,28 @@ class LeagueListViewModel: ObservableObject, Identifiable  {
     
     init(leagueFetcher: LeagueFetchable) {
         self.leagueFetcher = leagueFetcher
-        self.configureBindings()
+        fetchLeague()
+    }
+    
+    private func fetchLeague(){
+        let scheduler: DispatchQueue = DispatchQueue(label: "LeagueViewModel")
+        $type
+            .dropFirst()
+            .debounce(for: .seconds(0.7), scheduler: scheduler)
+            .flatMap({ value in
+                self.leagueFetcher.allLeaguesResponse()
+            })
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { (completion) in
+            }, receiveValue: { (results) in
+                guard let leagues = results.leagues else {
+                    return
+                }
+                let value = leagues.filter { $0.strLeague.contains(self.type)}.first
+                self.type = value?.strLeague ?? ""
+                self.configureBindings()
+            })
+            .store(in: &disposables)
     }
     
     private func configureBindings(){
