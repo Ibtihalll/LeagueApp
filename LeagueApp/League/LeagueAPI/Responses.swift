@@ -23,12 +23,12 @@ struct AllLeaguesResponse: Codable {
 struct TeamListResponse: Codable {
     let teams: [Item]?
     
-    struct Item: Codable {
+    struct Item: Codable, Comparable {
         let idTeam : String
         let idSoccerXML : String?
         let idAPIfootball : String?
         let intLoved : String?
-        let strTeam : String?
+        let strTeam : String
         let strTeamShort : String?
         let strAlternate : String?
         let intFormedYear : String?
@@ -90,5 +90,9 @@ struct TeamListResponse: Codable {
         let strTeamBanner: String?
         let strYoutube: String?
         let strLocked: String?
+        
+        static func < (lhs: TeamListResponse.Item, rhs: TeamListResponse.Item) -> Bool {
+            return lhs.strTeam < rhs.strTeam
+        }
     }
 }

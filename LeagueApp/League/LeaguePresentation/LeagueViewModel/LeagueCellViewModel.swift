@@ -19,7 +19,7 @@ class LeagueCellViewModel: ObservableObject, Identifiable {
     }
     
     var name: String {
-        return item.strTeam ?? ""
+        return item.strTeam 
     }
     
     var image: String {
@@ -42,7 +42,6 @@ extension LeagueCellViewModel: Hashable {
 }
 
 extension LeagueCellViewModel {
-    
     func makeTeamViewModel() -> TeamViewModel {
         let viewModel = TeamViewModel(item: item)
         return viewModel

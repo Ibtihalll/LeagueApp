@@ -30,7 +30,7 @@ class LeagueListViewModel: ObservableObject, Identifiable  {
             })
             .switchToLatest()
             .map { response -> [LeagueCellViewModel] in
-                guard let teams = response.teams else {
+                guard let teams = response.teams?.sorted(by: >) else {
                     return []
                 }
                 return teams.map(LeagueCellViewModel.init)

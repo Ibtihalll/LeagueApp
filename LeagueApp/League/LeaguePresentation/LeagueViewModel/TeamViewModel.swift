@@ -12,7 +12,7 @@ class TeamViewModel: ObservableObject, Identifiable {
     private let item: TeamListResponse.Item
     
     var teamName: String {
-        return item.strTeam ?? ""
+        return item.strTeam 
     }
     
     var teamImage: String {
