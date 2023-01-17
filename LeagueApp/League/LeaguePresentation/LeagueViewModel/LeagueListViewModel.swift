@@ -45,7 +45,6 @@ class LeagueListViewModel: ObservableObject, Identifiable {
     private func configureBindings(){
         $type
             .dropFirst()
-            .print("type")
             .map({ value in
                 self.leagueFetcher.leagueListResponse(byType: value)
             })

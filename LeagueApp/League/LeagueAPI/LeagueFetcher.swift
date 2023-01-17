@@ -87,23 +87,23 @@ extension LeagueFetcher: LeagueFetchable{
     }
     
     private func get<T>(
-       with components: URLComponents
-     ) -> AnyPublisher<T, LeagueError> where T: Decodable {
-       
-       guard let url = components.url else {
-           let error = LeagueError.network(description: "url_not_created".localized())
-         return Fail(error: error).eraseToAnyPublisher()
-       }
-
-         print("\(url)")
-       return session.dataTaskPublisher(for: URLRequest(url: url))
-         .mapError { error in
-           .network(description: error.localizedDescription)
-         }
-         
-         .flatMap(maxPublishers: .max(1)) { pair in
-           decode(pair.data)
-         }
-         .eraseToAnyPublisher()
-     }
+        with components: URLComponents
+    ) -> AnyPublisher<T, LeagueError> where T: Decodable {
+        
+        guard let url = components.url else {
+            let error = LeagueError.network(description: "url_not_created".localized())
+            return Fail(error: error).eraseToAnyPublisher()
+        }
+        
+        print("\(url)")
+        return session.dataTaskPublisher(for: URLRequest(url: url))
+            .mapError { error in
+                    .network(description: error.localizedDescription)
+            }
+        
+            .flatMap(maxPublishers: .max(1)) { pair in
+                decode(pair.data)
+            }
+            .eraseToAnyPublisher()
+    }
 }

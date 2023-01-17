@@ -33,6 +33,6 @@ class TeamViewModel: ObservableObject, Identifiable {
     
     init(item: TeamListResponse.Item) {
         
-      self.item = item
+        self.item = item
     }
 }

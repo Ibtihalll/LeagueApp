@@ -22,7 +22,7 @@ struct LeagueCellView: View {
     var body: some View {
         NavigationLink(destination: CurrentTeamView) {
             CustomAsyncImage(url: URL(string: self.viewModel.image))
-            .frame(width: 110, height: 110)
+                .frame(width: 110, height: 110)
         }
     }
 }
