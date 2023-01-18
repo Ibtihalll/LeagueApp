@@ -18,10 +18,11 @@ class LeagueListViewModel: ObservableObject, Identifiable {
     
     init(leagueFetcher: LeagueFetchable) {
         self.leagueFetcher = leagueFetcher
-        fetchLeague()
+        self.fetchLeague()
+        self.configureBindings()
     }
     
-    private func fetchLeague(){
+    func fetchLeague() {
         let scheduler: DispatchQueue = DispatchQueue(label: "LeagueViewModel")
         $type
             .dropFirst()
@@ -29,7 +30,7 @@ class LeagueListViewModel: ObservableObject, Identifiable {
             .flatMap({ value in
                 self.leagueFetcher.allLeaguesResponse()
             })
-            .receive(on: DispatchQueue.main)
+            .receive(on: RunLoop.main)
             .sink(receiveCompletion: { (completion) in
             }, receiveValue: { (results) in
                 guard let leagues = results.leagues else {
@@ -37,12 +38,11 @@ class LeagueListViewModel: ObservableObject, Identifiable {
                 }
                 let value = leagues.filter { $0.strLeague.contains(self.type)}.first
                 self.type = value?.strLeague ?? ""
-                self.configureBindings()
             })
             .store(in: &disposables)
     }
     
-    private func configureBindings(){
+    func configureBindings(){
         $type
             .dropFirst()
             .map({ value in
