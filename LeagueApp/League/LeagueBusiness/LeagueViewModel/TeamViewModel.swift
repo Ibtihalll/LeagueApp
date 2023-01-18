@@ -8,7 +8,6 @@
 import Combine
 
 class TeamViewModel: ObservableObject, Identifiable {
-    
     private let item: TeamListResponse.Item
     
     var teamName: String {

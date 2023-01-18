@@ -9,7 +9,6 @@ import SwiftUI
 import Foundation
 
 struct TeamView: View {
-    
     @ObservedObject var viewModel: TeamViewModel
     
     init(viewModel: TeamViewModel) {

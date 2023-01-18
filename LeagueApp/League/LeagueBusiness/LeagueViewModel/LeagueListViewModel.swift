@@ -9,7 +9,6 @@ import SwiftUI
 import Combine
 
 class LeagueListViewModel: ObservableObject, Identifiable {
-    
     @Published var type: String = ""
     @Published var dataSource: [LeagueCellViewModel] = []
     

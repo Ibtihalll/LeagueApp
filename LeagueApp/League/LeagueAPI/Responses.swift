@@ -37,21 +37,6 @@ struct TeamListResponse: Codable {
         let strDescriptionEN: String?
         let strDescriptionFR: String?
         
-        init(idTeam: String, strTeam: String, strTeamShort: String?, strTeamBanner: String?, strStadiumLocation: String?, strTeamBadge: String?, strAlternate: String?, strSport: String?, strLeague: String?, idLeague: String?, strDescriptionEN: String?, strDescriptionFR: String?) {
-            self.idTeam = idTeam
-            self.strTeam = strTeam
-            self.strTeamShort = strTeamShort
-            self.strTeamBanner = strTeamBanner
-            self.strStadiumLocation = strStadiumLocation
-            self.strTeamBadge = strTeamBadge
-            self.strAlternate = strAlternate
-            self.strSport = strSport
-            self.strLeague = strLeague
-            self.idLeague = idLeague
-            self.strDescriptionEN = strDescriptionEN
-            self.strDescriptionFR = strDescriptionFR
-        }
-        
         static func < (lhs: TeamListResponse.Item, rhs: TeamListResponse.Item) -> Bool {
             return lhs.strTeam < rhs.strTeam
         }

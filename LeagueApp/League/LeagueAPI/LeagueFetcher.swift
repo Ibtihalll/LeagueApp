@@ -9,7 +9,6 @@ import Foundation
 import Combine
 
 protocol LeagueFetchable {
-    
     func allLeaguesResponse(
     ) -> AnyPublisher<AllLeaguesResponse, LeagueError>
     

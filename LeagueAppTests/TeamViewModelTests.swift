@@ -9,7 +9,7 @@ import XCTest
 @testable import LeagueApp
 
 final class TeamViewModelTests: XCTestCase {
- 
+    
     private var model: TeamViewModel!
     
     override func setUp() {

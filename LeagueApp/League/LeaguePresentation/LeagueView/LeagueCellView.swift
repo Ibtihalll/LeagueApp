@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LeagueCellView: View {
-    
     @ObservedObject var viewModel: LeagueCellViewModel
     
     private var CurrentTeamView: some View {

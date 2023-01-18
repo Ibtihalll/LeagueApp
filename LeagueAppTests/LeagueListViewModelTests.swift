@@ -17,6 +17,7 @@ final class LeagueListViewModelTests: XCTestCase {
         let fetcher = LeagueFetcher()
         self.model = LeagueListViewModel(leagueFetcher: fetcher)
     }
+    
     func testconfigureBindings() async throws {
         self.model.type = "French ligue 1"
         self.model.configureBindings()
